@@ -30,26 +30,29 @@
         -->
         <li class="nav-devider"></li>
         <li class="nav-small-cap">X-FILES</li>
-        <li>
+        <li *ngFor="let item of menus">
           <a
             class="has-arrow waves-effect waves-dark"
             href="#"
             aria-expanded="false"
-            ><i class="mdi mdi-widgets"></i
+            ><i [class]="item.icon"></i
             ><span class="hide-menu"
-              >Tecas
+              >{{ item.titulo }}
               <span class="label label-rouded label-themecolor pull-right"
-                >3</span
-              ></span
+                >{{ item.submenu.length }}
+              </span></span
             ></a
           >
           <ul aria-expanded="false" class="collapse">
-            <li><a routerLink="tecas/films">Films</a></li>
-            <li><a routerLink="tecas/series">Series</a></li>
-            <li><a routerLink="tecas/books">Books</a></li>
-            <!-- Aún no
-            <li><a href="index4.html">Música</a></li>
-            -->
+            <li *ngFor="let subItem of item.submenu">
+              <a
+                [routerLink]="subItem.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                {{ subItem.titulo }}</a
+              >
+            </li>
           </ul>
         </li>
         <!-- Aún no
