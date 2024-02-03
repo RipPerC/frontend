@@ -10,9 +10,9 @@ export class SidebarService {
       titulo: 'Tecas',
       submenu: [
         { titulo: 'Main', path: 'tecas' },
+        { titulo: 'Books', path: 'tecas/books' },
         { titulo: 'Films', path: 'tecas/films' },
         { titulo: 'Series', path: 'tecas/series' },
-        { titulo: 'Books', path: 'tecas/books' },
       ],
     },
   ];
