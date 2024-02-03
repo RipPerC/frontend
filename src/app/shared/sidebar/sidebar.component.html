@@ -37,7 +37,7 @@
             aria-expanded="false"
             ><i [class]="item.icon"></i
             ><span class="hide-menu"
-              >{{ item.titulo }}
+              >{{ item.title }}
               <span class="label label-rouded label-themecolor pull-right"
                 >{{ item.submenu.length }}
               </span></span
@@ -50,7 +50,7 @@
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                {{ subItem.titulo }}</a
+                {{ subItem.title }}</a
               >
             </li>
           </ul>
