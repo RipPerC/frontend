@@ -1,10 +1,17 @@
 # HdH Frontend
 
-Fase 1:
-    - Register information about:
-        `Films` / `Series` / `Books`
+## Version 1.0.0:
+1. __Tecas__ Section. 
+* Register information about: <br>
+        `Films` <br>
+        `Series` <br>
+        `Books` <br>
 
-## Version
+<br>
+<br>
+<br>
+
+## Angular's Version
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.8.
 
@@ -31,6 +38,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+* Pagination (tables): https://www.delftstack.com/howto/angular/pagination-in-angular/
+
 
 
 ## Menu items
