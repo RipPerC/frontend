@@ -1,8 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
-import { Film } from 'src/app/interfaces/film.interface';
 import { FilmService } from 'src/app/services/film.service';
+import { Film } from '../model/film.model';
+
+const noSort = '../../../assets/images/sort/stay.png';
+const up = '../../../assets/images/sort/up.png';
+const down = '../../../assets/images/sort/down.png';
 
 @Component({
   selector: 'app-films',
@@ -13,9 +17,14 @@ export class FilmsComponent implements OnInit, OnDestroy {
   public allFilms: Film[] = [];
   public allFilmsAux: Film[] = [];
   public pages: number = 1;
-  public items: number = 10;
+  public perPage: number = 10;
   public total: number = 0;
   public loading: boolean = true;
+  public itemsPerPage = [5, 10, 50, 100];
+  public sortYear: string = noSort;
+  public sortTitle: string = noSort;
+  public txtSearchByYear: string = '';
+  public txtSearchByTitle: string = '';
 
   constructor(private filmService: FilmService) {}
 
@@ -35,13 +44,28 @@ export class FilmsComponent implements OnInit, OnDestroy {
     });
   }
 
-  search(word: string) {
-    if (word.length === 0) {
+  searchByTitle() {
+    if (this.txtSearchByTitle.length === 0) {
       return (this.allFilms = this.allFilmsAux);
     }
 
     this.allFilms = this.allFilms.filter((obj) => {
-      return obj.title.toLowerCase().includes(word.toLowerCase());
+      return obj.title
+        .toLowerCase()
+        .includes(this.txtSearchByTitle.toLowerCase());
+    });
+
+    this.total = this.allFilms.length;
+    return this.allFilms;
+  }
+
+  searchByYear() {
+    if (this.txtSearchByYear.length === 0) {
+      return (this.allFilms = this.allFilmsAux);
+    }
+
+    this.allFilms = this.allFilms.filter((obj) => {
+      return obj.year.toString().includes(this.txtSearchByYear);
     });
 
     this.total = this.allFilms.length;
@@ -80,5 +104,54 @@ export class FilmsComponent implements OnInit, OnDestroy {
       });
       this.loadFilms();
     });
+  }
+
+  assignPerPage(size: any) {
+    this.perPage = size;
+    this.loadFilms();
+  }
+
+  sortByYear() {
+    this.sortTitle = noSort;
+
+    if (this.sortYear === noSort) {
+      this.sortYear = up;
+      return this.allFilms.sort(function (f, s) {
+        return f.year - s.year;
+      });
+    } else if (this.sortYear === up) {
+      this.sortYear = down;
+      return this.allFilms.sort(function (f, s) {
+        return s.year - f.year;
+      });
+    } else if (this.sortYear === down) {
+      this.sortYear = noSort;
+      this.txtSearchByYear = '';
+      this.txtSearchByTitle = '';
+      this.loadFilms();
+    }
+    return;
+  }
+
+  sortByTitle() {
+    this.sortYear = noSort;
+
+    if (this.sortTitle === noSort) {
+      this.sortTitle = up;
+      return this.allFilms.sort(function (f, s) {
+        return f.title.localeCompare(s.title);
+      });
+    } else if (this.sortTitle === up) {
+      this.sortTitle = down;
+      return this.allFilms.sort(function (f, s) {
+        return s.title.localeCompare(f.title);
+      });
+    } else if (this.sortTitle === down) {
+      this.sortTitle = noSort;
+      this.txtSearchByYear = '';
+      this.txtSearchByTitle = '';
+      this.loadFilms();
+    }
+    return;
   }
 }
