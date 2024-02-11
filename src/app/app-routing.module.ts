@@ -5,6 +5,7 @@ import { SeriesComponent } from './pages/series/series.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { BooksComponent } from './pages/books/books.component';
 import { TecasComponent } from './pages/tecas/tecas.component';
+import { FilmComponent } from './pages/films/film.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,11 @@ const routes: Routes = [
     path: 'tecas/films',
     component: FilmsComponent,
     data: { section: 'Tecas', title: 'Films' },
+  },
+  {
+    path: 'tecas/films/new',
+    component: FilmComponent,
+    data: { section: 'Tecas', title: 'New Film' },
   },
   {
     path: 'tecas/series',

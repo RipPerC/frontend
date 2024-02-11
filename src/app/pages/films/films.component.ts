@@ -72,6 +72,18 @@ export class FilmsComponent implements OnInit, OnDestroy {
     return this.allFilms;
   }
 
+  editFilm(film: Film) {
+    this.filmService.updateOrCreateFilm(film).subscribe((resp) => {
+      Swal.fire({
+        title: 'Updated!!',
+        text: `Film: ${film.title}`,
+        icon: 'success',
+      });
+      this.loadFilms();
+    });
+    this.loadFilms();
+  }
+
   deleteFilm(film: Film) {
     Swal.fire({
       title: 'Are you sure?',

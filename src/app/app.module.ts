@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BreadcrumbsComponent } from './shared/breadcrumbs/breadcrumbs.component';
@@ -13,7 +14,7 @@ import { FilmsComponent } from './pages/films/films.component';
 import { SeriesComponent } from './pages/series/series.component';
 import { BooksComponent } from './pages/books/books.component';
 import { TecasComponent } from './pages/tecas/tecas.component';
-import { FormsModule } from '@angular/forms';
+import { FilmComponent } from './pages/films/film.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
     SeriesComponent,
     BooksComponent,
     TecasComponent,
+    FilmComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     NgxPaginationModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent],
 })
