@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import { delay } from 'rxjs';
 
-import { FilmService } from 'src/app/services/film.service';
 import { Film } from '../model/film.model';
+import { FilmService } from 'src/app/services/film.service';
 
 const noSort = '../../../assets/images/sort/stay.png';
 const up = '../../../assets/images/sort/up.png';
@@ -95,16 +96,19 @@ export class FilmsComponent implements OnInit, OnDestroy {
       confirmButtonText: 'Yes, delete it!',
     }).then((result) => {
       if (result.isConfirmed) {
-        this.filmService.deleteFilm(film).subscribe((resp) => {
-          Swal.fire({
-            title: 'Deleted!',
-            text: `Film: ${film.title}`,
-            icon: 'success',
+        this.filmService
+          .deleteFilm(film)
+          .pipe(delay(100))
+          .subscribe((resp) => {
+            this.loadFilms();
+            Swal.fire({
+              title: 'Deleted!',
+              text: `Film: ${film.title}`,
+              icon: 'success',
+            });
           });
-        });
       }
     });
-    this.loadFilms();
   }
 
   downloaded(film: Film) {
