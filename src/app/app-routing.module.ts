@@ -6,6 +6,8 @@ import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { BooksComponent } from './pages/books/books.component';
 import { TecasComponent } from './pages/tecas/tecas.component';
 import { FilmComponent } from './pages/films/film.component';
+import { AuxiliariesComponent } from './pages/auxiliaries/auxiliaries/auxiliaries.component';
+import { BooksagesComponent } from './pages/auxiliaries/booksages/booksages.component';
 
 const routes: Routes = [
   {
@@ -38,6 +40,16 @@ const routes: Routes = [
     redirectTo: '/tecas',
     pathMatch: 'full',
     data: { section: 'Tecas', title: 'Main' },
+  },
+  {
+    path: 'auxiliaries',
+    component: AuxiliariesComponent,
+    data: { section: 'Auxiliaries', title: 'Main' },
+  },
+  {
+    path: 'auxiliaries/sages',
+    component: BooksagesComponent,
+    data: { section: 'Auxiliaries', title: 'Books Sages' },
   },
   { path: '**', component: NotfoundComponent },
 ];

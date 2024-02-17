@@ -15,6 +15,8 @@ import { SeriesComponent } from './pages/series/series.component';
 import { BooksComponent } from './pages/books/books.component';
 import { TecasComponent } from './pages/tecas/tecas.component';
 import { FilmComponent } from './pages/films/film.component';
+import { AuxiliariesComponent } from './pages/auxiliaries/auxiliaries/auxiliaries.component';
+import { BooksagesComponent } from './pages/auxiliaries/booksages/booksages.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { FilmComponent } from './pages/films/film.component';
     BooksComponent,
     TecasComponent,
     FilmComponent,
+    AuxiliariesComponent,
+    BooksagesComponent,
   ],
   imports: [
     BrowserModule,

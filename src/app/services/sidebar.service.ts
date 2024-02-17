@@ -15,6 +15,14 @@ export class SidebarService {
         { title: 'Series', path: 'tecas/series' },
       ],
     },
+    {
+      icon: 'mdi mdi-table',
+      title: 'Auxiliaries',
+      submenu: [
+        { title: 'Main', path: 'auxiliaries' },
+        { title: 'Book Sages', path: 'auxiliaries/sages' },
+      ],
+    },
   ];
 
   constructor() {}
