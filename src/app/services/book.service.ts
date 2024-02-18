@@ -39,4 +39,8 @@ export class BookService {
   deleteBook(book: Book) {
     return this.http.delete(`${this.url_books}/${book.id} `);
   }
+
+  createOrUpdateBook(book: Book) {
+    return this.http.post(this.url_books, book);
+  }
 }

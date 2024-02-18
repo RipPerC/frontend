@@ -1,1 +1,190 @@
-<p>book works!</p>
+<div class="col-lg-12">
+  <div class="card">
+    <div class="card-header bg-info" *ngIf="newBook">
+      <h4 class="m-b-0 text-white">New Book</h4>
+    </div>
+    <div class="card-header bg-info" *ngIf="!newBook">
+      <h4 class="m-b-0 text-white">Update Book</h4>
+    </div>
+    <div class="card-body">
+      <form
+        class="form-horizontal"
+        [formGroup]="bookForm"
+        (submit)="saveBook()"
+      >
+        <div class="form-body">
+          <h3 class="box-title">Book Info</h3>
+          <hr class="m-t-0 m-b-40" />
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3">Title</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    formControlName="title"
+                    class="form-control"
+                    placeholder="Title"
+                  />
+                </div>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3">Author</label>
+                <div class="col-md-9">
+                  <input
+                    type="text"
+                    formControlName="author"
+                    class="form-control"
+                    placeholder="Author"
+                  />
+                </div>
+              </div>
+            </div>
+            <!--/span-->
+          </div>
+          <!--/row-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3">Sage</label>
+                <div class="col-md-9">
+                  <select
+                    class="form-control custom-select"
+                    formControlName="sage"
+                  >
+                    <option value="">Unique</option>
+                    <option *ngFor="let sage of allSages" [value]="sage.id">
+                      {{ sage.name }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-3">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3">Order</label>
+                <div class="col-md-9">
+                  <input
+                    type="number"
+                    formControlName="orderSage"
+                    min="0"
+                    class="form-control"
+                    placeholder="nn"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3">Year</label>
+                <div class="col-md-9">
+                  <input
+                    type="number"
+                    formControlName="year"
+                    min="1100"
+                    class="form-control"
+                    placeholder="yyyy"
+                  />
+                </div>
+              </div>
+            </div>
+            <!--/span-->
+          </div>
+          <!--/row-->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3"
+                  >Year of the File</label
+                >
+                <div class="col-md-9">
+                  <input
+                    type="number"
+                    formControlName="fileYear"
+                    min="1900"
+                    class="form-control"
+                    placeholder="yyyy"
+                  />
+                </div>
+              </div>
+            </div>
+            <!--/span-->
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label class="control-label text-right col-md-3">Digital</label>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                    <label class="custom-control custom-radio">
+                      <input
+                        id="true"
+                        name="digital"
+                        type="radio"
+                        value="true"
+                        class="custom-control-input"
+                        formControlName="digital"
+                      />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">Yes</span>
+                    </label>
+                    <label class="custom-control custom-radio">
+                      <input
+                        id="false"
+                        name="digital"
+                        type="radio"
+                        value="false"
+                        class="custom-control-input"
+                        formControlName="digital"
+                      />
+                      <span class="custom-control-indicator"></span>
+                      <span class="custom-control-description">No</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--/span-->
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group row">
+              <label class="control-label text-right col-md-1">Notes</label>
+              <div class="col-md-10">
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  placeholder="Notes"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="form-actions">
+          <button
+            type="submit"
+            class="btn btn-success"
+            [disabled]="bookForm.invalid"
+          >
+            <div *ngIf="bookForm.invalid"><i class="fa"></i> Save</div>
+            <div *ngIf="!bookForm.invalid">
+              <i class="fa fa-check"></i> Save
+            </div>
+          </button>
+          &nbsp;
+          <button
+            routerLink="/tecas/books"
+            type="button"
+            class="btn btn-inverse"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -37,9 +37,9 @@ const routes: Routes = [
     data: { section: 'Tecas', title: 'Books' },
   },
   {
-    path: 'tecas/books/new',
+    path: 'tecas/books/:id',
     component: BookComponent,
-    data: { section: 'Tecas', title: 'New Book' },
+    data: { section: 'Tecas', title: 'New / Update Book' },
   },
   {
     path: '',

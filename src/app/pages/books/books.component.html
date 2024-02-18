@@ -119,12 +119,13 @@
                 <td>{{ book.author }}</td>
                 <td class="text-nowrap text-center">
                   <a
+                    [routerLink]="['/tecas/books/', book.id]"
                     data-toggle="tooltip"
                     data-original-title="Edit"
                     matTooltip="Edit"
                     (click)="editBook(book)"
                   >
-                    <i class="fa fa-save text-inverse m-r-10"></i>
+                    <i class="fa fa-pencil text-inverse m-r-10"></i>
                   </a>
                   <a
                     class="cursor"
