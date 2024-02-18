@@ -1,1 +1,159 @@
-<p>books works!</p>
+<div class="row animated fadeIn fast">
+  <div class="col-10">
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search by title"
+          (keyup)="searchByTitle()"
+          [(ngModel)]="txtSearchByTitle"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="col-2">
+    <div class="card">
+      <div class="card-body">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search by year"
+          (keyup)="searchByYear()"
+          [(ngModel)]="txtSearchByYear"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="row animated fadeIn fast">
+    <div class="col-12">
+      <div class="alert alert-info text-center">
+        <h4 class="alert-heading">Loading info</h4>
+        <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p class="mb-0">Please wait</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row animated fadeIn fast">
+  <div class="col-6">
+    <div class="card">
+      <div class="text-center">
+        <a routerLink="new" class="btn btn-primary" title="New Book">
+          <i class="fa fa-book"></i>
+          New Book
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="card">
+      <div class="card-body text-right">
+        <span>Set items per page:</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-1">
+    <div class="card">
+      <div class="card-body">
+        <select
+          class="btn btn-secondary dropdown-toggle"
+          #txtPerPage
+          (change)="assignPerPage(txtPerPage.value)"
+        >
+          <option
+            *ngFor="let item of itemsPerPage"
+            [selected]="item === perPage"
+            [value]="item"
+          >
+            {{ item }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!loading">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Books</h4>
+        <h6 class="card-subtitle">
+          List of registered books (total: {{ total }})
+        </h6>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr class="text-center">
+                <th class="w85">
+                  Year
+                  <img
+                    [src]="sortYear"
+                    class="w15 cursor"
+                    (click)="sortByYear()"
+                  />
+                </th>
+                <th>
+                  Title
+                  <img
+                    [src]="sortTitle"
+                    class="w15 cursor"
+                    (click)="sortByTitle()"
+                  />
+                </th>
+                <th class="w300">Author</th>
+                <th class="text-nowrap w75">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let book of allBooks
+                    | paginate : { itemsPerPage: perPage, currentPage: pages }
+                "
+              >
+                <td class="text-center">{{ book.year }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td class="text-nowrap text-center">
+                  <a
+                    data-toggle="tooltip"
+                    data-original-title="Edit"
+                    matTooltip="Edit"
+                    (click)="editBook(book)"
+                  >
+                    <i class="fa fa-save text-inverse m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    data-toggle="tooltip"
+                    data-original-title="Delete"
+                    matTooltip="Delete"
+                    (click)="deleteBook(book)"
+                  >
+                    <i class="fa fa-close text-danger m-r-10"></i>
+                  </a>
+                  <a
+                    class="cursor"
+                    data-toggle="tooltip"
+                    data-original-title="Book detail"
+                    matTooltip="Book detail"
+                    (click)="showBook(book)"
+                  >
+                    <i class="fa fa-play-circle m-r-10"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="text-center">
+          <pagination-controls (pageChange)="pages = $event">
+          </pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

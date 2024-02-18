@@ -100,4 +100,11 @@ export class BooksagesComponent implements OnInit {
       }
     });
   }
+
+  showBooks(sage: Sage) {
+    Swal.fire({
+      text: 'Soon!',
+      icon: 'warning',
+    });
+  }
 }
