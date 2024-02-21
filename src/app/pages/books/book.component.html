@@ -55,7 +55,7 @@
                     class="form-control custom-select"
                     formControlName="sage"
                   >
-                    <option value="">Unique</option>
+                    <option [value]="null">Unique</option>
                     <option *ngFor="let sage of allSages" [value]="sage.id">
                       {{ sage.name }}
                     </option>
